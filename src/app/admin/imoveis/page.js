@@ -12,6 +12,9 @@ import FiltersImoveisAdmin from "./components/filters";
 import { TrashIcon } from "lucide-react";
 import ModalDelete from "../components/modal-delete";
 
+// Disable static generation for admin pages
+export const dynamic = 'force-dynamic';
+
 // Função para calcular relevância do resultado
 const calculateRelevance = (imovel, searchTerm) => {
   if (!searchTerm || !imovel) return 0;

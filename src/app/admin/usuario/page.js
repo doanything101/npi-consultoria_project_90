@@ -11,6 +11,9 @@ import {
 } from "firebase/auth";
 import AuthCheck from "../components/auth-check";
 
+// Disable static generation for admin pages
+export const dynamic = 'force-dynamic';
+
 export default function UsuarioPage() {
   const [formData, setFormData] = useState({
     nome: "",

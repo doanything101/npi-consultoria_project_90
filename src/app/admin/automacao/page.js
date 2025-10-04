@@ -10,6 +10,9 @@ import useImovelStore from "../store/imovelStore";
 import { TrashIcon } from "lucide-react";
 import ModalDelete from "../components/modal-delete";
 
+// Disable static generation for admin pages
+export const dynamic = 'force-dynamic';
+
 export default function AdminImoveis() {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);

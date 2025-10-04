@@ -11,13 +11,21 @@ export default function AuthCheck({ children }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Skip Firebase auth during build time or if auth is not available
+    if (!auth) {
+      setIsLoading(false);
+      return;
+    }
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // Só faz o controle de expiração se o usuário está autenticado
         const loginTime = localStorage.getItem("admin_login_time");
         if (loginTime && Date.now() - Number(loginTime) > 60 * 60 * 10000) {
           // Sessão expirou
-          auth.signOut();
+          if (auth) {
+            auth.signOut();
+          }
           localStorage.removeItem("admin_login_time");
           router.push("/admin/login");
           setIsAuthenticated(false);

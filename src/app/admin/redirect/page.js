@@ -3,6 +3,9 @@ import AuthCheck from "../components/auth-check";
 import { useEffect, useState } from "react";
 import { deleteRedirect } from "../services/redirects";
 
+// Disable static generation for admin pages
+export const dynamic = 'force-dynamic';
+
 export default function RedirectPage() {
   const [redirects, setRedirects] = useState([]);
   const [source, setSource] = useState("");

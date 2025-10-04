@@ -193,6 +193,18 @@ NEXT_PUBLIC_SITE_URL=https://www.npiconsultoria.com.br
 2. Ensure the variable is available during build time
 3. The code now handles missing environment variables gracefully during build
 
+#### Build Error: "Firebase: Error (auth/invalid-api-key)"
+**Problem**: Vercel build fails with Firebase authentication errors
+**Solution**: 
+1. Set Firebase environment variables in Vercel dashboard:
+   - `NEXT_PUBLIC_FIREBASE_API_KEY`
+   - `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`
+   - `NEXT_PUBLIC_FIREBASE_PROJECT_ID`
+   - `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`
+   - `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`
+   - `NEXT_PUBLIC_FIREBASE_APP_ID`
+2. The code now handles missing Firebase config gracefully during build
+
 #### API Routes Not Working After Deployment
 **Problem**: API routes return 503 errors
 **Solution**: 

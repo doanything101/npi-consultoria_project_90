@@ -7,6 +7,9 @@ import AuthCheck from "../components/auth-check";
 import { TrashIcon } from "lucide-react";
 import { Tab } from "@headlessui/react";
 
+// Disable static generation for admin pages
+export const dynamic = 'force-dynamic';
+
 export default function CondominiosDestacados() {
   const [imoveis, setImoveis] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

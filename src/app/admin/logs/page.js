@@ -6,6 +6,9 @@ import { buscarLogs } from "../services/log-service";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { TrashIcon } from "lucide-react";
 
+// Disable static generation for admin pages
+export const dynamic = 'force-dynamic';
+
 export default function Logs() {
   const [logs, setLogs] = useState([]);
 

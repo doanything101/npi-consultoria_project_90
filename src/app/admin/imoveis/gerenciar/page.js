@@ -2,6 +2,9 @@
 // Este é agora um Server Component que importa dinamicamente o Client Component
 import dynamic from 'next/dynamic';
 
+// Disable static generation for admin pages
+export const dynamic = 'force-dynamic';
+
 // Importa o Client Component dinamicamente, desabilitando SSR
 const GerenciarImovelClient = dynamic(
   () => import('./GerenciarImovelClient'),

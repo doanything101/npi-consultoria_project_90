@@ -26,6 +26,12 @@ export default function AdminLayout({ children }) {
     // Marcar componente como montado para evitar problemas de hidratação
     setMounted(true);
 
+    // Skip Firebase auth during build time or if auth is not available
+    if (!auth) {
+      setIsAuthLoading(false);
+      return;
+    }
+
     // Verificar autenticação com Firebase
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -101,7 +107,9 @@ export default function AdminLayout({ children }) {
 
               <button
                 onClick={() => {
-                  auth.signOut();
+                  if (auth) {
+                    auth.signOut();
+                  }
                   localStorage.removeItem("admin_login_time");
                   window.location.href = "/admin/login";
                 }}

@@ -8,6 +8,9 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import { StarIcon as StarOutlineIcon } from "@heroicons/react/24/outline";
 import { PhotoIcon } from "@heroicons/react/24/outline";
 
+// Disable static generation for admin pages
+export const dynamic = 'force-dynamic';
+
 export default function ImoveisDestacados() {
   const [imoveis, setImoveis] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

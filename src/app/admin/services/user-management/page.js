@@ -4,6 +4,9 @@ import { getAuth } from "firebase/auth";
 import { useEffect, useState } from "react";
 import AuthCheck from "../../components/auth-check";
 
+// Disable static generation for admin pages
+export const dynamic = 'force-dynamic';
+
 export default function UserManagement() {
   const [users, setUsers] = useState([]);
 
