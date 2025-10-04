@@ -354,7 +354,7 @@ export async function generateMetadata({ params }) {
   return {
     title: `${rawTitle}, ${condominio.TipoEndereco} ${condominio.Endereco} ${condominio.Numero}, ${condominio.BairroComercial}`,
     description,
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.npiconsultoria.com.br'),
     robots: {
       index: true,
       follow: true,

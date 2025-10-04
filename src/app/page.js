@@ -23,7 +23,7 @@ export const metadata = {
   authors: [{ name: "NPi Imóveis" }],
   creator: "NPi Imóveis",
   publisher: "NPi Imóveis",
-  metadataBase: new URL(`${process.env.NEXT_PUBLIC_SITE_URL}`),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.npiconsultoria.com.br'),
   robots: {
     index: true,
     follow: true,
