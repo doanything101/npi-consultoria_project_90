@@ -59,6 +59,12 @@ export default function VideoCondominio({ imovel }) {
       return null;
     }
     
+    // Verifica se contém ID problemático específico
+    if (url.includes('4Aq7szgycT4')) {
+      console.log('❌ ID problemático detectado:', url);
+      return null;
+    }
+    
     return url;
   };
   

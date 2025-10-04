@@ -299,11 +299,18 @@ function ordenarImoveisRelacionados(imoveisRelacionados, codigoPrincipal) {
 export async function generateMetadata({ params }) {
   const { slug } = params;
   
-  // Detectar URLs que sigam o padrão imovel-{id} e retornar metadata vazio (não redirecionar aqui)
+  // Detectar URLs que sigam o padrão imovel-{id} - permitir indexação
   if (slug.match(/^imovel-(\d+)$/)) {
     return {
-      title: "Redirecionando...",
-      robots: { index: false, follow: false }
+      title: "Imóvel - NPI Consultoria",
+      description: "Imóvel de alto padrão disponível na NPI Consultoria",
+      robots: { 
+        index: true, 
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      }
     };
   }
   
@@ -333,7 +340,8 @@ export async function generateMetadata({ params }) {
                          primeiraFoto?.FotoPequena ||
                          `${process.env.NEXT_PUBLIC_SITE_URL}/og-image.png`;
   
-  const currentUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${slug}`;
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.npiconsultoria.com.br";
+  const currentUrl = `${baseUrl}/${slug}`;
   
   // ✅ Gerar data para o condomínio
   const modifiedDate = new Date().toISOString();
@@ -377,11 +385,11 @@ export async function generateMetadata({ params }) {
           type: "image/jpeg",
         }
       ],
-      // 🎯 ADICIONAR VÍDEOS SE EXISTIR
+      // 🎯 ADICIONAR VÍDEOS SE EXISTIR (CORRIGIDO: usar watch URLs)
       ...(videoId && {
         videos: [{
-          url: `https://www.youtube.com/embed/${videoId}`,
-          secureUrl: `https://www.youtube.com/embed/${videoId}`,
+          url: `https://www.youtube.com/watch?v=${videoId}`,
+          secureUrl: `https://www.youtube.com/watch?v=${videoId}`,
           type: 'text/html',
           width: 1280,
           height: 720,
@@ -401,10 +409,10 @@ export async function generateMetadata({ params }) {
           alt: rawTitle,
         }
       ],
-      // 🎯 ADICIONAR PLAYER DO TWITTER SE TIVER VÍDEO
+      // 🎯 ADICIONAR PLAYER DO TWITTER SE TIVER VÍDEO (CORRIGIDO: usar watch URLs)
       ...(videoId && {
         players: [{
-          playerUrl: `https://www.youtube.com/embed/${videoId}`,
+          playerUrl: `https://www.youtube.com/watch?v=${videoId}`,
           streamUrl: `https://www.youtube.com/watch?v=${videoId}`,
           width: 1280,
           height: 720,
@@ -422,15 +430,15 @@ export async function generateMetadata({ params }) {
       'date': modifiedDate,
       'DC.date.modified': modifiedDate,
       'DC.date.created': modifiedDate,
-      // 🎯 META TAGS DE VÍDEO ADICIONADAS CORRETAMENTE
+      // 🎯 META TAGS DE VÍDEO ADICIONADAS CORRETAMENTE (CORRIGIDO: usar watch URLs)
       ...(videoId && {
-        'og:video': `https://www.youtube.com/embed/${videoId}`,
-        'og:video:url': `https://www.youtube.com/embed/${videoId}`,
-        'og:video:secure_url': `https://www.youtube.com/embed/${videoId}`,
+        'og:video': `https://www.youtube.com/watch?v=${videoId}`,
+        'og:video:url': `https://www.youtube.com/watch?v=${videoId}`,
+        'og:video:secure_url': `https://www.youtube.com/watch?v=${videoId}`,
         'og:video:type': 'text/html',
         'og:video:width': '1280',
         'og:video:height': '720',
-        'twitter:player': `https://www.youtube.com/embed/${videoId}`,
+        'twitter:player': `https://www.youtube.com/watch?v=${videoId}`,
         'twitter:player:width': '1280',
         'twitter:player:height': '720',
       }),

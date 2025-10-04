@@ -108,7 +108,6 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  swcMinify: true,
   
   // 🎯 WEBPACK CONSERVADOR
   webpack: (config, { dev, isServer }) => {
@@ -146,10 +145,10 @@ const nextConfig = {
     ];
   },
   
-  // ✅ REDIRECTS OTIMIZADOS - Apenas URLs antigas críticas (sem conflitos com middleware)
+  // ✅ REDIRECTS OTIMIZADOS - Apenas URLs antigas críticas
   async redirects() {
     return [
-      // ✅ MANTIDO: Apenas redirects de URLs antigas indexadas (não conflitam com middleware)
+      // WordPress legacy redirects
       {
         source: '/iConatusIframe/:path*',
         destination: '/',
@@ -160,7 +159,6 @@ const nextConfig = {
         destination: '/',
         permanent: true
       },
-      // 🔧 ADICIONADO: Redirects específicos para URLs antigas conhecidas
       {
         source: '/busca.php',
         destination: '/busca',
@@ -169,6 +167,17 @@ const nextConfig = {
       {
         source: '/index.php',
         destination: '/',
+        permanent: true
+      },
+      // Additional legacy redirects
+      {
+        source: '/wp-content/:path*',
+        destination: '/',
+        permanent: true
+      },
+      {
+        source: '/wp-admin/:path*',
+        destination: '/admin',
         permanent: true
       },
     ];

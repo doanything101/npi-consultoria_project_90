@@ -1,4 +1,4 @@
-// src/app/robots.js - CORRIGIDO PARA GSC
+// src/app/robots.js - SEO OPTIMIZED FOR GSC
 
 /**
  * @returns {import('next').MetadataRoute.Robots}
@@ -12,33 +12,17 @@ export default function robots() {
         allow: '/',
         disallow: [
           '/api/',
-          '/imovel-*/facebook.com/',
-          '/imovel-*/instagram.com/',
-          '/imovel-*/linkedin.com/',
-          '/imovel-*/twitter.com/',
-          '/imovel-*/youtube.com/',
-          // REMOVIDO: '/*?_rsc=*', - bloqueava páginas normais
-          // REMOVIDO: '/*&_rsc=*', - bloqueava páginas normais
-          '/_next/static/chunks/',
-          '/_next/static/css/',
-          '/_next/static/js/',
-          '/_next/static/media/',
-          '/_next/image*',
-          '/_next/data/',
-          '/busca?',  // ALTERADO: removido o * no final
-          '/pesquisa?',  // ALTERADO: removido o * no final
-          '/search?',  // ALTERADO: removido o * no final
-          // REMOVIDO: '/*?utm_*', - bloqueava campanhas
-          // REMOVIDO: '/*?fbclid=*', - bloqueava Facebook
-          // REMOVIDO: '/*?gclid=*', - bloqueava Google Ads
-          // REMOVIDO: '/*?ref=*', - bloqueava referrals
-          // REMOVIDO: '/*?v=*', - genérico demais
-          // REMOVIDO: '/*?cache=*', - genérico demais
-          // REMOVIDO: '/*?t=*', - genérico demais
           '/admin/',
-          '/dashboard/'
+          '/dashboard/',
+          '/_next/static/',
+          '/_next/data/',
+          // Only block specific problematic social media URLs, not all
+          '/imovel-*/facebook.com/npiimoveis',
+          '/imovel-*/instagram.com/npi_imoveis',
+          '/imovel-*/indexdata/index.swf',
+          // Allow search pages with parameters
+          // Allow all other pages including imovel-* patterns
         ],
-        // REMOVIDO: crawlDelay: 1, - Googlebot ignora
       },
       
       {
@@ -46,20 +30,12 @@ export default function robots() {
         allow: '/',
         disallow: [
           '/api/',
-          // REMOVIDO: '/*?_rsc=*',
-          // REMOVIDO: '/*&_rsc=*',
-          '/_next/static/chunks/',
-          '/_next/static/css/',
-          '/_next/static/js/',
-          '/_next/data/',
-          '/busca?',  // ALTERADO: removido o *
-          // REMOVIDO: '/*?utm_*',
-          // REMOVIDO: '/*?fbclid=*',
-          // REMOVIDO: '/*?gclid=*',
           '/admin/',
-          '/dashboard/'
+          '/dashboard/',
+          '/_next/static/',
+          '/_next/data/',
+          // Allow all property pages and search pages
         ],
-        // REMOVIDO: crawlDelay: 1,
       },
       
       {
@@ -67,13 +43,11 @@ export default function robots() {
         allow: '/',
         disallow: [
           '/api/',
-          // REMOVIDO: '/*?_rsc=*',
-          '/_next/static/chunks/',
-          '/_next/data/',
           '/admin/',
-          '/dashboard/'
+          '/dashboard/',
+          '/_next/static/',
+          '/_next/data/',
         ],
-        // REMOVIDO: crawlDelay: 2,
       },
       
       // ✅ OpenAI (ChatGPT, GPTs) - MANTIDO
