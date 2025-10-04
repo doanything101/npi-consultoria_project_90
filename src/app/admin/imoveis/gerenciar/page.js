@@ -1,12 +1,12 @@
 // src/app/admin/imoveis/gerenciar/page.js
 // Este é agora um Server Component que importa dinamicamente o Client Component
-import dynamic from 'next/dynamic';
+import dynamicImport from 'next/dynamic';
 
 // Disable static generation for admin pages
 export const dynamic = 'force-dynamic';
 
 // Importa o Client Component dinamicamente, desabilitando SSR
-const GerenciarImovelClient = dynamic(
+const GerenciarImovelClient = dynamicImport(
   () => import('./GerenciarImovelClient'),
   { ssr: false } // MUITO IMPORTANTE: Garante que este componente só roda no cliente
 );
