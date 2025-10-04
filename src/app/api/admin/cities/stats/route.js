@@ -6,7 +6,13 @@ import City from '@/app/models/City';
 
 export async function GET(request) {
   try {
-    await connectToDatabase();
+    const db = await connectToDatabase();
+    if (!db) {
+      return NextResponse.json({
+        status: 503,
+        message: 'Serviço temporariamente indisponível'
+      }, { status: 503 });
+    }
     
     const totalCities = await City.countDocuments();
     const activeCities = await City.countDocuments({ isActive: true });
@@ -68,7 +74,13 @@ export async function GET(request) {
 
 export async function POST(request) {
   try {
-    await connectToDatabase();
+    const db = await connectToDatabase();
+    if (!db) {
+      return NextResponse.json({
+        status: 503,
+        message: 'Serviço temporariamente indisponível'
+      }, { status: 503 });
+    }
     
     console.log('🔄 Atualizando contadores de propriedades...');
     

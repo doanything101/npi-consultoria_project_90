@@ -6,7 +6,13 @@ import City from '@/app/models/City';
 
 export async function GET(request) {
   try {
-    await connectToDatabase();
+    const db = await connectToDatabase();
+    if (!db) {
+      return NextResponse.json({
+        status: 503,
+        message: 'Serviço temporariamente indisponível'
+      }, { status: 503 });
+    }
     
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get('page')) || 1;
@@ -81,7 +87,13 @@ export async function GET(request) {
 
 export async function POST(request) {
   try {
-    await connectToDatabase();
+    const db = await connectToDatabase();
+    if (!db) {
+      return NextResponse.json({
+        status: 503,
+        message: 'Serviço temporariamente indisponível'
+      }, { status: 503 });
+    }
     
     const body = await request.json();
     const { 

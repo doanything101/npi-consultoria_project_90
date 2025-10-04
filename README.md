@@ -184,6 +184,28 @@ AWS_SECRET_ACCESS_KEY=...
 NEXT_PUBLIC_SITE_URL=https://www.npiconsultoria.com.br
 ```
 
+### Deployment Troubleshooting
+
+#### Build Error: "Defina a variável de ambiente MONGODB_URI"
+**Problem**: Vercel build fails with MongoDB URI error
+**Solution**: 
+1. Set `MONGODB_URI` environment variable in Vercel dashboard
+2. Ensure the variable is available during build time
+3. The code now handles missing environment variables gracefully during build
+
+#### API Routes Not Working After Deployment
+**Problem**: API routes return 503 errors
+**Solution**: 
+1. Verify all environment variables are set in Vercel
+2. Check Vercel function logs for specific errors
+3. Ensure MongoDB connection string is correct
+
+#### Environment Variables Setup in Vercel
+1. Go to your Vercel project dashboard
+2. Navigate to Settings → Environment Variables
+3. Add all required variables for Production, Preview, and Development environments
+4. Redeploy after adding variables
+
 ## 📊 Features
 
 ### SEO Optimization
